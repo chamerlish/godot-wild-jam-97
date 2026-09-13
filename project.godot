@@ -25,6 +25,10 @@ window/stretch/aspect="expand"
 Pickable=""
 Interactable=""
 
+[gui]
+
+theme/custom_font="uid://cypukpomutd7s"
+
 [input]
 
 move_right={

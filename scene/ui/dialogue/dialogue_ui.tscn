@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://ojs0f644gfu6"]
+
+[ext_resource type="Texture2D" uid="uid://m70mrtw8moct" path="res://textures/ui/dialogue_box.png" id="1_2ns2h"]
+[ext_resource type="Script" uid="uid://cdw0rl5d1wab5" path="res://scripts/ui/dialogue/dialogue_ui.gd" id="1_gnuae"]
+[ext_resource type="Texture2D" uid="uid://cvnydgbetw6jk" path="res://textures/ui/dialogue_tip.png" id="2_gnuae"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mb61u"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[node name="DialogueUI" type="CanvasLayer" unique_id=206093376]
+script = ExtResource("1_gnuae")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=888032016]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -32.0
+offset_right = 32.0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_mb61u")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="PanelContainer" unique_id=1246839410]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("1_2ns2h")
+region_rect = Rect2(0, 0, 48, 48)
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1794151766]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer" unique_id=1074292002]
+z_index = 2
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=162128580]
+texture_filter = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -12.0
+offset_right = 16.0
+offset_bottom = 4.0
+grow_vertical = 0
+texture = ExtResource("2_gnuae")
