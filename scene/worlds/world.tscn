@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://coum6axb5iqnt" path="res://scene/entities/npc/npc.tscn" id="4_tmwor"]
 [ext_resource type="Script" uid="uid://e0gevm5jffqp" path="res://scripts/quests/quest.gd" id="5_slyxh"]
 [ext_resource type="Script" uid="uid://83vsg2v7k1lv" path="res://scripts/quests/objective.gd" id="6_qn1ml"]
+[ext_resource type="PackedScene" uid="uid://bxsancurlxe6o" path="res://scene/misc/basic_object.tscn" id="7_4utwg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p0h4x"]
 texture = ExtResource("1_w12ll")
@@ -144,6 +145,7 @@ texture_region_size = Vector2i(32, 32)
 11:10/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_bhunq"]
+tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_p0h4x")
 
 [node name="World" type="Node2D" unique_id=2087357384]
@@ -172,3 +174,6 @@ metadata/_custom_type_script = "uid://e0gevm5jffqp"
 [node name="Objective" type="Node" parent="Npc/Quest" unique_id=94256866]
 script = ExtResource("6_qn1ml")
 metadata/_custom_type_script = "uid://83vsg2v7k1lv"
+
+[node name="BasicObject" parent="." unique_id=778565226 instance=ExtResource("7_4utwg")]
+position = Vector2(256, 0)

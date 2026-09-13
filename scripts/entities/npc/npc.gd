@@ -25,6 +25,8 @@ func generate_random_direction() -> Vector2:
 		randf_range(-1.0, 1.0)
 	)
 
+func interact() -> void:
+	print("je")
 
 func _on_change_direction_delay_timeout(source: Timer) -> void:
 	target_direction = Vector2.ZERO

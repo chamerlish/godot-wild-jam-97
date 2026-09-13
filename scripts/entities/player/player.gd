@@ -36,16 +36,20 @@ func _input(event: InputEvent) -> void:
 			picked_up_node.process_mode = Node.PROCESS_MODE_INHERIT
 			picked_up_node = null
 		else:
-			var to_pick_node: Node2D = get_closest_pickable_node()
+			var to_pick_node: Node2D = get_closest_group_node("Pickup")
 			if to_pick_node:
 				picked_up_node = to_pick_node
 				picked_up_node.process_mode = Node.PROCESS_MODE_DISABLED
 				picked_up_node.reparent(self)
 				picked_up_node.set_transform(picked_up_point.transform)
 				to_pick_node = null
+	
+	if event.is_action_pressed("interact"):
+		var to_inter_node: Node2D = get_closest_group_node("Interactable")
+		if to_inter_node:
+			to_inter_node.interact()
 
-
-func get_closest_pickable_node() -> Node2D:
+func get_closest_group_node(group_name: StringName) -> Node2D:
 	var interractable_bodies: Array[Node2D] = interraction_area.get_overlapping_bodies()
 	
 	var current_closest: Node2D
@@ -55,9 +59,9 @@ func get_closest_pickable_node() -> Node2D:
 		current_closest = interractable_bodies.pick_random()
 	
 	for body in interractable_bodies:
-		if body.is_in_group("Pickable"):
+		if body.is_in_group(group_name):
 			if global_position.distance_to(body.global_position) < current_closest_distance or not current_closest.is_in_group("Pickable"):
 				current_closest = body
-	if current_closest.is_in_group("Pickable"):
+	if current_closest.is_in_group(group_name):
 		return current_closest
 	return null
