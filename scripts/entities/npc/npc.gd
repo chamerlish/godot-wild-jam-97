@@ -4,6 +4,8 @@ const SPEED = 150.0
 
 var target_direction: Vector2
 
+@export var npc_quest: Quest
+
 func _physics_process(_delta: float) -> void:
 	velocity = target_direction.normalized() * SPEED
 
@@ -15,7 +17,6 @@ func _physics_process(_delta: float) -> void:
 		print("h")
 		
 @onready var running_break_time: Timer = $RunningBreakTime
-@onready var flip_looking_delay: Timer = $FlipLookingDelay
 
 
 func generate_random_direction() -> Vector2:
@@ -38,9 +39,12 @@ func _on_change_direction_delay_timeout(source: Timer) -> void:
 	
 	target_direction = generate_random_direction()
 
+
+@onready var flip_looking_delay: Timer = $FlipLookingDelay
+
 func look_around(delay_timer: Timer) -> void:
 	while delay_timer.time_left == 0:
 		flip_looking_delay.start()
-		sprite.flip_h = !sprite.flip_h
 		await flip_looking_delay.timeout
+		sprite.flip_h = !sprite.flip_h
 	

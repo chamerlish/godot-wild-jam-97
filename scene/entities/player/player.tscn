@@ -18,5 +18,14 @@ hframes = 12
 vframes = 11
 frame = 85
 
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1579463727]
+texture_filter = 1
+position = Vector2(0, -32)
+rotation = -1.5707964
+texture = ExtResource("1_8njr0")
+hframes = 12
+vframes = 11
+frame = 85
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=872612231]
 shape = SubResource("RectangleShape2D_bhunq")

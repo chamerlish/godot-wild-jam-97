@@ -4,6 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://wwaqh3ycqk68" path="res://scene/entities/player/player.tscn" id="2_p0h4x"]
 [ext_resource type="Script" uid="uid://c4a5vaecbit8k" path="res://scripts/entities/player/player_camera.gd" id="3_3e82u"]
 [ext_resource type="PackedScene" uid="uid://coum6axb5iqnt" path="res://scene/entities/npc/npc.tscn" id="4_tmwor"]
+[ext_resource type="Script" uid="uid://e0gevm5jffqp" path="res://scripts/quests/quest.gd" id="5_slyxh"]
+[ext_resource type="Script" uid="uid://83vsg2v7k1lv" path="res://scripts/quests/objective.gd" id="6_qn1ml"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p0h4x"]
 texture = ExtResource("1_w12ll")
@@ -157,5 +159,14 @@ tile_set = SubResource("TileSet_bhunq")
 script = ExtResource("3_3e82u")
 player_node = NodePath("../Player")
 
-[node name="Npc" parent="." unique_id=899144295 instance=ExtResource("4_tmwor")]
+[node name="Npc" parent="." unique_id=899144295 node_paths=PackedStringArray("npc_quest") instance=ExtResource("4_tmwor")]
 position = Vector2(-110, -130)
+npc_quest = NodePath("Quest")
+
+[node name="Quest" type="Node" parent="Npc" unique_id=2128381785]
+script = ExtResource("5_slyxh")
+metadata/_custom_type_script = "uid://e0gevm5jffqp"
+
+[node name="Objective" type="Node" parent="Npc/Quest" unique_id=94256866]
+script = ExtResource("6_qn1ml")
+metadata/_custom_type_script = "uid://83vsg2v7k1lv"
