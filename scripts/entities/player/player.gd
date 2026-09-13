@@ -4,14 +4,14 @@ const MAX_SPEED: float = 250.0
 const ACCELERATION: float = 800.0
 const FRICTION: float = 600.0
 
-const DROP_OFF_DISTANCE = 20
+const DROP_OFF_DISTANCE = 40
 
 var picked_up_node: Node2D
 
 var last_direction: Vector2
 
 func _physics_process(delta):
-	var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	if direction:
 		last_direction = direction
 		velocity = velocity.move_toward(direction * MAX_SPEED, ACCELERATION * delta)
@@ -26,7 +26,7 @@ func _physics_process(delta):
 @onready var drop_off_point: Marker2D = $DropOffPoint
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_accept"):
+	if event.is_action_pressed("pickup"):
 		if picked_up_node:
 			drop_off_point.position = last_direction * DROP_OFF_DISTANCE
 			picked_up_node.reparent(get_parent())
@@ -56,7 +56,7 @@ func get_closest_pickable_node() -> Node2D:
 	
 	for body in interractable_bodies:
 		if body.is_in_group("Pickable"):
-			if global_position.distance_to(body.global_position) < current_closest_distance:
+			if global_position.distance_to(body.global_position) < current_closest_distance or not current_closest.is_in_group("Pickable"):
 				current_closest = body
 	if current_closest.is_in_group("Pickable"):
 		return current_closest
