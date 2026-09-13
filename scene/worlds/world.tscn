@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bqsklppml0k5u" path="res://textures/tiles/tilemap_packed.png" id="1_w12ll"]
 [ext_resource type="PackedScene" uid="uid://wwaqh3ycqk68" path="res://scene/entities/player/player.tscn" id="2_p0h4x"]
 [ext_resource type="Script" uid="uid://c4a5vaecbit8k" path="res://scripts/entities/player/player_camera.gd" id="3_3e82u"]
+[ext_resource type="PackedScene" uid="uid://coum6axb5iqnt" path="res://scene/entities/npc/npc.tscn" id="4_tmwor"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p0h4x"]
 texture = ExtResource("1_w12ll")
@@ -155,3 +156,6 @@ tile_set = SubResource("TileSet_bhunq")
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=2042026055 node_paths=PackedStringArray("player_node")]
 script = ExtResource("3_3e82u")
 player_node = NodePath("../Player")
+
+[node name="Npc" parent="." unique_id=899144295 instance=ExtResource("4_tmwor")]
+position = Vector2(-110, -130)

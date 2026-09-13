@@ -1,6 +1,6 @@
 extends Camera2D
 
-const CAM_FOLLOW_WEIGHT: float = 0.25
+const CAM_FOLLOW_WEIGHT: float = 0.50
 
 @export var player_node: Player
 

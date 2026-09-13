@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://coum6axb5iqnt"]
+
+[ext_resource type="Texture2D" uid="uid://ddyc2p5rgj3n7" path="res://textures/entity/player/tilemap_packed.png" id="1_26ic4"]
+[ext_resource type="Script" uid="uid://cl5x8dfhs1hgs" path="res://scripts/entities/npc/npc.gd" id="1_r8owc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r8owc"]
+size = Vector2(16, 16)
+
+[node name="Npc" type="CharacterBody2D" unique_id=899144295]
+motion_mode = 1
+wall_min_slide_angle = 0.0
+script = ExtResource("1_r8owc")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=538684351]
+texture_filter = 1
+texture = ExtResource("1_26ic4")
+hframes = 12
+vframes = 11
+frame = 86
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=92601429]
+shape = SubResource("RectangleShape2D_r8owc")
+
+[node name="ChangeDirectionDelay" type="Timer" parent="." unique_id=1450495023]
+one_shot = true
+autostart = true
+
+[node name="RunningBreakTime" type="Timer" parent="." unique_id=1613794258]
+one_shot = true
+
+[node name="FlipLookingDelay" type="Timer" parent="." unique_id=1172069595]
+wait_time = 0.25
+
+[connection signal="timeout" from="ChangeDirectionDelay" to="." method="_on_change_direction_delay_timeout" flags=18]
