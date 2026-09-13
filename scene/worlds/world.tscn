@@ -163,8 +163,10 @@ player_node = NodePath("../Player")
 position = Vector2(-110, -130)
 npc_quest = NodePath("Quest")
 
-[node name="Quest" type="Node" parent="Npc" unique_id=2128381785]
+[node name="Quest" type="Node" parent="Npc" unique_id=2128381785 node_paths=PackedStringArray("objective_list")]
 script = ExtResource("5_slyxh")
+quest_name = &"Lick A Key"
+objective_list = [NodePath("Objective")]
 metadata/_custom_type_script = "uid://e0gevm5jffqp"
 
 [node name="Objective" type="Node" parent="Npc/Quest" unique_id=94256866]

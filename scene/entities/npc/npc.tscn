@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r8owc"]
 size = Vector2(16, 16)
 
-[node name="Npc" type="CharacterBody2D" unique_id=899144295]
+[node name="Npc" type="CharacterBody2D" unique_id=899144295 groups=["Pickable"]]
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_r8owc")

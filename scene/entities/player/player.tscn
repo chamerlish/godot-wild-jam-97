@@ -6,6 +6,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bhunq"]
 size = Vector2(16, 16)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_sn0t7"]
+radius = 80.399
+
 [node name="Player" type="CharacterBody2D" unique_id=692354683]
 motion_mode = 1
 wall_min_slide_angle = 0.0
@@ -18,14 +21,17 @@ hframes = 12
 vframes = 11
 frame = 85
 
-[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1579463727]
+[node name="PickedUpPoint" type="Marker2D" parent="." unique_id=811183588]
 texture_filter = 1
 position = Vector2(0, -32)
 rotation = -1.5707964
-texture = ExtResource("1_8njr0")
-hframes = 12
-vframes = 11
-frame = 85
+
+[node name="DropOffPoint" type="Marker2D" parent="." unique_id=86478381]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=872612231]
 shape = SubResource("RectangleShape2D_bhunq")
+
+[node name="InterractionArea" type="Area2D" parent="." unique_id=1921031719]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InterractionArea" unique_id=1494753596]
+shape = SubResource("CircleShape2D_sn0t7")
