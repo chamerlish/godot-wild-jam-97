@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://wwaqh3ycqk68"]
+
+[ext_resource type="Texture2D" uid="uid://ddyc2p5rgj3n7" path="res://textures/entity/player/tilemap_packed.png" id="1_8njr0"]
+[ext_resource type="Script" uid="uid://xu3avfo14srr" path="res://scripts/entities/player/player.gd" id="1_j6kxy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bhunq"]
+size = Vector2(16, 16)
+
+[node name="Player" type="CharacterBody2D" unique_id=692354683]
+motion_mode = 1
+wall_min_slide_angle = 0.0
+script = ExtResource("1_j6kxy")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1947401671]
+texture_filter = 1
+texture = ExtResource("1_8njr0")
+hframes = 12
+vframes = 11
+frame = 85
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=872612231]
+shape = SubResource("RectangleShape2D_bhunq")
