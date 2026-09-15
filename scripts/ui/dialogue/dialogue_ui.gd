@@ -35,7 +35,7 @@ func read_line(new_line: int, new_lines_to_read: Array[String]) -> void:
 	label.text = new_lines_to_read[new_line]
 	
 	
-	var tween := create_tween()
+	var tween: Tween = create_tween()
 	tween.tween_property(label, "visible_ratio", 1.0, 1.0 / TEXT_SPEED)
 	tween.tween_callback(_on_line_finished)
 
@@ -52,7 +52,7 @@ func try_to_read_next_line() -> void:
 		current_line += 1
 		read_line(current_line, lines_to_read)
 	else:
-		# TODO: send finish signal
+		DialogueManager.end_fialogue.emit()
 		is_showing = false
 		pass
 
