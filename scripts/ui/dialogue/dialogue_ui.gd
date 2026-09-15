@@ -31,12 +31,30 @@ func start_dialogue(new_lines_to_read: Array[String], tip_position: Marker2D):
 	read_line(current_line, new_lines_to_read)
 
 func read_line(new_line: int, new_lines_to_read: Array[String]) -> void:
-
 	label.visible_ratio = 0.0
 	label.text = new_lines_to_read[new_line]
+	
+	
+	var tween := create_tween()
+	tween.tween_property(label, "visible_ratio", 1.0, 1.0 / TEXT_SPEED)
+	tween.tween_callback(_on_line_finished)
 
-func _process(delta: float) -> void:
-	label.visible_ratio = move_toward(label.visible_ratio, 1.0, TEXT_SPEED * delta)
+@onready var next_line_delay: Timer = $NextLineDelay
+
+func _on_line_finished():
+	next_line_delay.stop()
+	next_line_delay.start()
+	await next_line_delay.timeout
+	try_to_read_next_line()
+
+func try_to_read_next_line() -> void:
+	if current_line < lines_to_read.size() - 1:
+		current_line += 1
+		read_line(current_line, lines_to_read)
+	else:
+		# TODO: send finish signal
+		is_showing = false
+		pass
 
 func _input(event: InputEvent) -> void:
 	if is_showing == false:
@@ -45,10 +63,5 @@ func _input(event: InputEvent) -> void:
 		if label.visible_ratio < 1:
 			label.visible_ratio = 1
 		else:
-			if current_line < lines_to_read.size() - 1:
-				current_line += 1
-				read_line(current_line, lines_to_read)
-			else:
-				# TODO: send finish signal
-				is_showing = false
-				pass
+			try_to_read_next_line()
+			

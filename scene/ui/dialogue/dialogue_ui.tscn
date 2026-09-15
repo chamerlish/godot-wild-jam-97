@@ -83,3 +83,5 @@ offset_right = 9.0
 offset_bottom = -1.0
 grow_vertical = 0
 texture = ExtResource("2_gnuae")
+
+[node name="NextLineDelay" type="Timer" parent="." unique_id=1733614812]
