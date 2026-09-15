@@ -172,8 +172,11 @@ quest_name = &"Lick A Key"
 objective_list = [NodePath("Objective")]
 metadata/_custom_type_script = "uid://e0gevm5jffqp"
 
-[node name="Objective" type="Node" parent="Npc/Quest" unique_id=94256866]
+[node name="Objective" type="Node" parent="Npc/Quest" unique_id=94256866 node_paths=PackedStringArray("object_needed")]
 script = ExtResource("6_qn1ml")
+object_needed = NodePath("../../../BasicObject")
+normal_message = Array[String](["i-i always wanted to lick a key in my life", "do you think you can help?"])
+success_message = Array[String](["yummy tastes like shit"])
 metadata/_custom_type_script = "uid://83vsg2v7k1lv"
 
 [node name="BasicObject" parent="." unique_id=778565226 instance=ExtResource("7_4utwg")]

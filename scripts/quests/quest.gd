@@ -12,6 +12,21 @@ var current_step: int = 0
 @onready var current_objective: Objective = objective_list[current_step]
 
 
+func check_item(held_item: Node2D) -> Array:
+	var is_correct_item: bool
+	var return_message: Array[String]
+	
+	is_correct_item = current_objective.object_needed == held_item
+	
+	if is_correct_item:
+		return_message = current_objective.success_message
+		held_item.queue_free()
+	else:
+		return_message = current_objective.normal_message
+		
+	
+	return [is_correct_item, return_message]
+
 func finish_step() -> void:
 	current_step += 1
 	if current_step >= objective_list.size() - 1:

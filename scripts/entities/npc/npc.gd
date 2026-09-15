@@ -4,13 +4,19 @@ const SPEED = 150.0
 
 var target_direction: Vector2
 
+var is_in_dialogue: bool # to stop it from moving
+
 @export var npc_quest: Quest
 
 func _ready() -> void:
 	NPCUtils.interact.connect(interact)
 	NPCUtils.pickup.connect(pickup)
+	DialogueManager.end_fialogue.connect(
+	func(): 
+		is_in_dialogue = false)
 
 func _physics_process(_delta: float) -> void:
+	if is_in_dialogue: return
 	velocity = target_direction.normalized() * SPEED
 
 	move_and_slide()
@@ -34,12 +40,14 @@ func interact(target: Node2D, held_item: Node2D) -> void:
 	if target != self:
 		return
 	
-	var test_array: Array[String] = ["HEy", "baller"]
+	# first index is if it is the correct item and the second is the result text
+	var result: Array = npc_quest.check_item(held_item)
 	
 	DialogueManager.start_dialogue.emit(
-		test_array, 
+		result[1], 
 		dialogue_point)
 	 
+	is_in_dialogue = true
 
 func pickup(target: Node2D) -> void:
 	if target != self:
@@ -64,7 +72,7 @@ func _on_change_direction_delay_timeout(source: Timer) -> void:
 @onready var flip_looking_delay: Timer = $FlipLookingDelay
 
 func look_around(delay_timer: Timer) -> void:
-	while delay_timer.time_left == 0:
+	while delay_timer.time_left == 0 and not is_in_dialogue:
 		flip_looking_delay.start()
 		await flip_looking_delay.timeout
 		sprite.flip_h = !sprite.flip_h

@@ -1,10 +1,13 @@
 extends Control
 
-const TEXT_SPEED: float = 1.5
+const TEXT_SPEED: float = 0.06
 
 var lines_to_read: Array[String]
 var current_line: int
-@onready var label: Label = $BubblePosition/PanelContainer/MarginContainer/Label
+
+var is_reading_line: bool
+
+@onready var label: RichTextLabel = $BubblePosition/PanelContainer/MarginContainer/Label
 @onready var bubble_position: Marker2D = $BubblePosition
 
 
@@ -31,17 +34,31 @@ func start_dialogue(new_lines_to_read: Array[String], tip_position: Marker2D):
 	read_line(current_line, new_lines_to_read)
 
 func read_line(new_line: int, new_lines_to_read: Array[String]) -> void:
-	label.visible_ratio = 0.0
-	label.text = new_lines_to_read[new_line]
+	var full_text: String = new_lines_to_read[new_line]
+
+	label.text = ""
 	
+	is_reading_line = true
 	
+
 	var tween: Tween = create_tween()
-	tween.tween_property(label, "visible_ratio", 1.0, 1.0 / TEXT_SPEED)
+	
+
+	for i in range(full_text.length()):
+		tween.tween_callback(
+			func():
+				if label.text == full_text: 
+					return
+				label.text = full_text.substr(0, i + 1)
+		).set_delay(TEXT_SPEED)
+
 	tween.tween_callback(_on_line_finished)
 
 @onready var next_line_delay: Timer = $NextLineDelay
 
 func _on_line_finished():
+	is_reading_line = false
+	
 	next_line_delay.stop()
 	next_line_delay.start()
 	await next_line_delay.timeout
@@ -57,11 +74,8 @@ func try_to_read_next_line() -> void:
 		pass
 
 func _input(event: InputEvent) -> void:
-	if is_showing == false:
+	if not is_showing:
 		return
 	if event.is_action_pressed("ui_accept"):
-		if label.visible_ratio < 1:
-			label.visible_ratio = 1
-		else:
-			try_to_read_next_line()
-			
+		if is_reading_line:
+			label.text = lines_to_read[current_line]

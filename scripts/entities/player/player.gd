@@ -52,9 +52,7 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact"):
 		var to_inter_node: Node2D = get_closest_group_node("Interactable")
 		if to_inter_node:
-			
-			print(to_inter_node.global_position)
-			NPCUtils.interact.emit(to_inter_node, picked_up_point)
+			NPCUtils.interact.emit(to_inter_node, picked_up_node)
 
 func get_closest_group_node(group_name: StringName) -> Node2D:
 	var interractable_bodies: Array[Node2D] = interraction_area.get_overlapping_bodies()
