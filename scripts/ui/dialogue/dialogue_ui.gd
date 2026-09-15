@@ -25,6 +25,10 @@ func _ready() -> void:
 
 
 func start_dialogue(new_lines_to_read: Array[String], tip_position: Marker2D):
+	
+	if is_showing:
+		return
+	
 	is_showing = true
 	current_line = 0
 	bubble_position.global_position = tip_position.global_position
@@ -35,7 +39,7 @@ func start_dialogue(new_lines_to_read: Array[String], tip_position: Marker2D):
 
 func read_line(new_line: int, new_lines_to_read: Array[String]) -> void:
 	var full_text: String = new_lines_to_read[new_line]
-
+	full_text = full_text.replace("\\n", "\n")
 	label.text = ""
 	
 	is_reading_line = true
