@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://e0gevm5jffqp" path="res://scripts/quests/quest.gd" id="5_slyxh"]
 [ext_resource type="Script" uid="uid://83vsg2v7k1lv" path="res://scripts/quests/objective.gd" id="6_qn1ml"]
 [ext_resource type="PackedScene" uid="uid://bxsancurlxe6o" path="res://scene/misc/basic_object.tscn" id="7_4utwg"]
+[ext_resource type="PackedScene" uid="uid://ojs0f644gfu6" path="res://scene/ui/dialogue/dialogue_ui.tscn" id="8_6n167"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p0h4x"]
 texture = ExtResource("1_w12ll")
@@ -177,3 +178,9 @@ metadata/_custom_type_script = "uid://83vsg2v7k1lv"
 
 [node name="BasicObject" parent="." unique_id=778565226 instance=ExtResource("7_4utwg")]
 position = Vector2(256, 0)
+
+[node name="DialogueUI" parent="." unique_id=206093376 instance=ExtResource("8_6n167")]
+offset_left = -130.0
+offset_top = -170.0
+offset_right = -90.0
+offset_bottom = -130.0

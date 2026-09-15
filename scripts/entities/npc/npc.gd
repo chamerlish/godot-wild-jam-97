@@ -1,10 +1,14 @@
-extends Entity
+class_name NPC extends Entity
 
 const SPEED = 150.0
 
 var target_direction: Vector2
 
 @export var npc_quest: Quest
+
+func _ready() -> void:
+	NPCUtils.interact.connect(interact)
+	NPCUtils.pickup.connect(pickup)
 
 func _physics_process(_delta: float) -> void:
 	velocity = target_direction.normalized() * SPEED
@@ -14,7 +18,6 @@ func _physics_process(_delta: float) -> void:
 	var collision = get_last_slide_collision()
 	if collision and not collision.get_collider() is Player: 
 		target_direction = generate_random_direction()
-		print("h")
 		
 @onready var running_break_time: Timer = $RunningBreakTime
 
@@ -25,8 +28,24 @@ func generate_random_direction() -> Vector2:
 		randf_range(-1.0, 1.0)
 	)
 
-func interact() -> void:
-	print("je")
+@onready var dialogue_point: Marker2D = $DialoguePoint
+
+func interact(target: Node2D, held_item: Node2D) -> void:
+	if target != self:
+		return
+	
+	var test_array: Array[String] = ["HEy", "baller"]
+	
+	DialogueManager.start_dialogue.emit(
+		test_array, 
+		dialogue_point)
+	 
+
+func pickup(target: Node2D) -> void:
+	if target != self:
+		return
+	
+	process_mode = Node.PROCESS_MODE_DISABLED
 
 func _on_change_direction_delay_timeout(source: Timer) -> void:
 	target_direction = Vector2.ZERO

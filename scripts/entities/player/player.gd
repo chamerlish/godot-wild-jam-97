@@ -32,14 +32,19 @@ func _input(event: InputEvent) -> void:
 			picked_up_node.reparent(get_parent())
 			picked_up_node.set_transform(drop_off_point.global_transform)
 			
+			if picked_up_node is CollisionObject2D:
+				picked_up_node.set_collision_layer_value(1, true)
 			
 			picked_up_node.process_mode = Node.PROCESS_MODE_INHERIT
 			picked_up_node = null
 		else:
-			var to_pick_node: Node2D = get_closest_group_node("Pickup")
+			var to_pick_node: Node2D = get_closest_group_node("Pickable")
 			if to_pick_node:
+				NPCUtils.pickup.emit(to_pick_node)
 				picked_up_node = to_pick_node
-				picked_up_node.process_mode = Node.PROCESS_MODE_DISABLED
+				if picked_up_node is CollisionObject2D:
+					picked_up_node.set_collision_layer_value(1, false)
+				
 				picked_up_node.reparent(self)
 				picked_up_node.set_transform(picked_up_point.transform)
 				to_pick_node = null
@@ -47,7 +52,9 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact"):
 		var to_inter_node: Node2D = get_closest_group_node("Interactable")
 		if to_inter_node:
-			to_inter_node.interact()
+			
+			print(to_inter_node.global_position)
+			NPCUtils.interact.emit(to_inter_node, picked_up_point)
 
 func get_closest_group_node(group_name: StringName) -> Node2D:
 	var interractable_bodies: Array[Node2D] = interraction_area.get_overlapping_bodies()
@@ -60,7 +67,7 @@ func get_closest_group_node(group_name: StringName) -> Node2D:
 	
 	for body in interractable_bodies:
 		if body.is_in_group(group_name):
-			if global_position.distance_to(body.global_position) < current_closest_distance or not current_closest.is_in_group("Pickable"):
+			if global_position.distance_to(body.global_position) < current_closest_distance or not current_closest.is_in_group(group_name):
 				current_closest = body
 	if current_closest.is_in_group(group_name):
 		return current_closest

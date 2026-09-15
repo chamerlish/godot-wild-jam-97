@@ -31,4 +31,7 @@ one_shot = true
 [node name="FlipLookingDelay" type="Timer" parent="." unique_id=1172069595]
 wait_time = 0.25
 
+[node name="DialoguePoint" type="Marker2D" parent="." unique_id=1132200915]
+position = Vector2(0, -26)
+
 [connection signal="timeout" from="ChangeDirectionDelay" to="." method="_on_change_direction_delay_timeout" flags=18]
