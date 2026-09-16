@@ -12,9 +12,6 @@ signal list_animation_started
 
 func _ready() -> void:
 	QuestManager.quest_added.connect(_add_quest)
-	
-	QuestManager.add_quest(quest)
-
 
 func _add_quest(new_quest: Quest) -> void:
 	var quest_node: QuestUILabel = quest_ui_label.instantiate()

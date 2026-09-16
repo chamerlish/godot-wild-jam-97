@@ -24,7 +24,7 @@ func _ready() -> void:
 	NPCUtils.pickup.connect(func(_throwaway: Node2D): is_showing = false)
 
 
-func start_dialogue(new_lines_to_read: Array[String], tip_position: Marker2D):
+func start_dialogue(new_lines_to_read: Array[String], tip_position: Marker2D, target: NPC):
 	
 	if is_showing:
 		return
@@ -35,9 +35,9 @@ func start_dialogue(new_lines_to_read: Array[String], tip_position: Marker2D):
 	reparent(tip_position)
 	lines_to_read = new_lines_to_read
 
-	read_line(current_line, new_lines_to_read)
+	read_line(current_line, new_lines_to_read, target)
 
-func read_line(new_line: int, new_lines_to_read: Array[String]) -> void:
+func read_line(new_line: int, new_lines_to_read: Array[String], target: NPC) -> void:
 	var full_text: String = new_lines_to_read[new_line]
 	full_text = full_text.replace("\\n", "\n")
 	label.text = ""
@@ -56,24 +56,24 @@ func read_line(new_line: int, new_lines_to_read: Array[String]) -> void:
 				label.text = full_text.substr(0, i + 1)
 		).set_delay(TEXT_SPEED)
 
-	tween.tween_callback(_on_line_finished)
+	tween.tween_callback(_on_line_finished.bind(target))
 
 @onready var next_line_delay: Timer = $NextLineDelay
 
-func _on_line_finished():
+func _on_line_finished(target: NPC):
 	is_reading_line = false
 	
 	next_line_delay.stop()
 	next_line_delay.start()
 	await next_line_delay.timeout
-	try_to_read_next_line()
+	try_to_read_next_line(target)
 
-func try_to_read_next_line() -> void:
+func try_to_read_next_line(target: NPC) -> void:
 	if current_line < lines_to_read.size() - 1:
 		current_line += 1
-		read_line(current_line, lines_to_read)
+		read_line(current_line, lines_to_read, target)
 	else:
-		DialogueManager.end_fialogue.emit()
+		DialogueManager.end_fialogue.emit(target)
 		is_showing = false
 		pass
 

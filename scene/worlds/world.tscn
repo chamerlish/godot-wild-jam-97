@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://83vsg2v7k1lv" path="res://scripts/quests/objective.gd" id="6_qn1ml"]
 [ext_resource type="PackedScene" uid="uid://bxsancurlxe6o" path="res://scene/misc/basic_object.tscn" id="7_4utwg"]
 [ext_resource type="PackedScene" uid="uid://ojs0f644gfu6" path="res://scene/ui/dialogue/dialogue_ui.tscn" id="8_6n167"]
+[ext_resource type="PackedScene" uid="uid://bfv5u2djo1xgr" path="res://scene/ui/quest/quest_manager_ui.tscn" id="9_itgq7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p0h4x"]
 texture = ExtResource("1_w12ll")
@@ -177,25 +178,7 @@ script = ExtResource("6_qn1ml")
 object_needed = NodePath("../../../BasicObject")
 description = "Find a key and bring it back to Key Licker Joe"
 normal_message = Array[String](["i-i always wanted to \\n lick a key in my life", "but sadly i was never \\n around them"])
-success_message = Array[String](["yummy tastes it tastes \\n horrible nom nom nom"])
-metadata/_custom_type_script = "uid://83vsg2v7k1lv"
-
-[node name="Npc2" parent="." unique_id=103590055 node_paths=PackedStringArray("npc_quest") instance=ExtResource("4_tmwor")]
-position = Vector2(160, -144)
-npc_quest = NodePath("Quest")
-
-[node name="Quest" type="Node" parent="Npc2" unique_id=2047361306 node_paths=PackedStringArray("objective_list")]
-script = ExtResource("5_slyxh")
-quest_name = &"The Key Of Happiness"
-objective_list = [NodePath("Objective")]
-metadata/_custom_type_script = "uid://e0gevm5jffqp"
-
-[node name="Objective" type="Node" parent="Npc2/Quest" unique_id=1203785378 node_paths=PackedStringArray("object_needed")]
-script = ExtResource("6_qn1ml")
-object_needed = NodePath("../../../BasicObject")
-description = "Find a key and bring it back to Key Licker Joe"
-normal_message = Array[String](["i-i always wanted to \\n lick a key in my life", "but sadly i was never \\n around them"])
-success_message = Array[String](["yummy tastes it tastes \\n horrible nom nom nom"])
+success_message = Array[String](["slurp slurp...", "yummy it tastes \\n horrible nom nom nom"])
 metadata/_custom_type_script = "uid://83vsg2v7k1lv"
 
 [node name="BasicObject" parent="." unique_id=778565226 instance=ExtResource("7_4utwg")]
@@ -206,3 +189,5 @@ offset_left = -130.0
 offset_top = -170.0
 offset_right = -90.0
 offset_bottom = -130.0
+
+[node name="QuestManagerUI" parent="." unique_id=450376624 instance=ExtResource("9_itgq7")]

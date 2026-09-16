@@ -12,7 +12,10 @@ func _ready() -> void:
 	NPCUtils.interact.connect(interact)
 	NPCUtils.pickup.connect(pickup)
 	DialogueManager.end_fialogue.connect(
-	func(): 
+	func(target: NPC):
+		if target != self:
+			return
+		QuestManager.update_quest(npc_quest)
 		is_in_dialogue = false)
 
 func _physics_process(_delta: float) -> void:
@@ -44,9 +47,11 @@ func interact(target: Node2D, held_item: Node2D) -> void:
 	var result: Array = npc_quest.check_item(held_item)
 	
 	DialogueManager.start_dialogue.emit(
-		result[1], 
-		dialogue_point)
-	 
+		result[1],
+		dialogue_point,
+		self
+	)
+	
 	is_in_dialogue = true
 
 func pickup(target: Node2D) -> void:
