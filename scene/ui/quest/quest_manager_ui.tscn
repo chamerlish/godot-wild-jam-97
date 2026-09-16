@@ -1,0 +1,540 @@
+[gd_scene format=3 uid="uid://bfv5u2djo1xgr"]
+
+[ext_resource type="Texture2D" uid="uid://dy7f6uprc1ulm" path="res://textures/ui/tilemap_packed.png" id="1_1ahfr"]
+[ext_resource type="PackedScene" uid="uid://3gnuwa67k7q0" path="res://scene/ui/quest/quest_ui_label.tscn" id="1_6ydvn"]
+[ext_resource type="Script" uid="uid://cy7nfsa0ve1ub" path="res://scene/ui/quest/quest_manager_ui.gd" id="1_w2530"]
+[ext_resource type="Script" uid="uid://e0gevm5jffqp" path="res://scripts/quests/quest.gd" id="4_hjl14"]
+[ext_resource type="FontFile" uid="uid://fs156bco8mge" path="res://fonts/alagard.ttf" id="4_pkw75"]
+[ext_resource type="Script" uid="uid://83vsg2v7k1lv" path="res://scripts/quests/objective.gd" id="5_g8cmt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bhunq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pkw75"]
+atlas = ExtResource("1_1ahfr")
+region = Rect2(256, 256, 192, 64)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4dwg1"]
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+
+[sub_resource type="Animation" id="Animation_g8cmt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/SideBar/PanelContainer:offset_transform_position_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/SideBar/TextureRect:z_index")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = false
+tracks/2/path = NodePath("Control/SideBar/TextureRect:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.001),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(880, 80), Vector2(80, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/SideBar/TextureRect:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Control/SideBar/TextureRect:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Control/SideBar/TextureRect:offset_transform_rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.001),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Control/SideBar/TextureRect:offset_transform_position_ratio")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Control/SideBar:offset_transform_position_ratio")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Control/SideBar/TextureRect:offset_transform_position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_17wtk"]
+resource_name = "close_tab"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/SideBar/PanelContainer:offset_transform_position_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(2.3784134, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/SideBar/TextureRect:z_index")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.06666666),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, -2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/SideBar/TextureRect:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = false
+tracks/3/path = NodePath("Control/SideBar/TextureRect:offset_transform_position_ratio")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.23333333),
+"transitions": PackedFloat32Array(2.143547, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Control/SideBar/TextureRect:offset_transform_rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.6666667),
+"transitions": PackedFloat32Array(0.51763237, 1),
+"update": 0,
+"values": [0.0, 2.6065602]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Control/SideBar/TextureRect:offset_transform_position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.36666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 120)]
+}
+
+[sub_resource type="Animation" id="Animation_pkw75"]
+resource_name = "new_quest"
+length = 5.133333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/SideBar/PanelContainer:offset_transform_position_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.6333333),
+"transitions": PackedFloat32Array(0.3511993, 1, 1),
+"update": 0,
+"values": [Vector2(1, 0), Vector2(-0.02, 0), Vector2(0, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.5333333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"start_list_animation"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/SideBar/TextureRect:z_index")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.36666667, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [-2, 0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = false
+tracks/3/path = NodePath("Control/SideBar/TextureRect:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.36666667, 0.8, 1.6333333, 1.8666667, 4.0333333),
+"transitions": PackedFloat32Array(1, 1.9318731, 1, 1, 1),
+"update": 0,
+"values": [Vector2(880, 180), Vector2(880, 37.7), Vector2(880, 80), Vector2(880, 80), Vector2(880, 80)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = false
+tracks/4/path = NodePath("Control/SideBar/TextureRect:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.33333334, 0.76666665, 2.0666666),
+"transitions": PackedFloat32Array(1, 0.17075512, 1),
+"update": 0,
+"values": [3.141592653589793, 0.0, 0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Control/SideBar/TextureRect:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Control/SideBar:offset_transform_position_ratio")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 2.68, 4.133333),
+"transitions": PackedFloat32Array(1, 1.86, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, 1.5)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Control/SideBar/TextureRect:offset_transform_position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.33333337, 0.76666665, 1.6, 1.8, 4.0333333),
+"transitions": PackedFloat32Array(0, 1, 2, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 100), Vector2(0, -43), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Control/SideBar/TextureRect:offset_transform_rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.03333333, 0.36666667, 0.7),
+"transitions": PackedFloat32Array(0, 1, 0.17075512),
+"update": 0,
+"values": [0.0, 3.141592653589793, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_8btm6"]
+resource_name = "open_tab"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/SideBar/PanelContainer:offset_transform_position_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.56666666, 0.73333335),
+"transitions": PackedFloat32Array(0.3511993, 1, 1),
+"update": 0,
+"values": [Vector2(1, 0), Vector2(-0.02, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/SideBar/TextureRect:z_index")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.23333333, 0.7, 0.9666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [-2, 0, 0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/SideBar/TextureRect:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.23333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Control/SideBar:offset_transform_position_ratio")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Control/SideBar/TextureRect:offset_transform_position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.6333333, 1),
+"transitions": PackedFloat32Array(0, 0.32987696, 2.0705302, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 100), Vector2(0, -30), Vector2(0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Control/SideBar/TextureRect:offset_transform_rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8btm6"]
+_data = {
+&"RESET": SubResource("Animation_g8cmt"),
+&"close_tab": SubResource("Animation_17wtk"),
+&"new_quest": SubResource("Animation_pkw75"),
+&"open_tab": SubResource("Animation_8btm6")
+}
+
+[node name="QuestManagerUI" type="CanvasLayer" unique_id=450376624]
+script = ExtResource("1_w2530")
+
+[node name="Control" type="Control" parent="." unique_id=550232237]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SideBar" type="Control" parent="Control" unique_id=1938096718]
+layout_mode = 1
+anchor_left = 0.625
+anchor_top = 0.123
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = 28.295998
+offset_bottom = -60.0
+grow_horizontal = 0
+grow_vertical = 2
+offset_transform_enabled = true
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/SideBar" unique_id=251764226]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+offset_transform_enabled = true
+theme_override_styles/panel = SubResource("StyleBoxEmpty_bhunq")
+metadata/_edit_use_anchors_ = true
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Control/SideBar/PanelContainer" unique_id=1272636771]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("1_1ahfr")
+region_rect = Rect2(0, 64, 64, 64)
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/SideBar/PanelContainer" unique_id=738420432]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="QuestList" type="VBoxContainer" parent="Control/SideBar/PanelContainer/MarginContainer" unique_id=1235073255]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="QuestUILabel" parent="Control/SideBar/PanelContainer/MarginContainer/QuestList" unique_id=832890566 instance=ExtResource("1_6ydvn")]
+layout_mode = 2
+text = "Quest 1"
+autowrap_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="Control/SideBar" unique_id=1694051534]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = -0.14166667
+anchor_right = 0.5
+anchor_bottom = -0.14166667
+offset_left = -96.0
+offset_right = 96.0
+offset_bottom = 80.0
+grow_horizontal = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+offset_transform_enabled = true
+texture = SubResource("AtlasTexture_pkw75")
+metadata/_edit_group_ = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Container" type="MarginContainer" parent="Control/SideBar/TextureRect" unique_id=1018269452]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_bottom = 5
+
+[node name="Questbook" type="RichTextLabel" parent="Control/SideBar/TextureRect/Container" unique_id=846294012]
+oversampling_with_scale = 2
+custom_minimum_size = Vector2(-10, 0)
+clip_contents = false
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5294118)
+theme_override_constants/shadow_outline_size = 2
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/normal_font = ExtResource("4_pkw75")
+theme_override_font_sizes/normal_font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_4dwg1")
+text = "Questbook"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Quest" type="Node" parent="." unique_id=1897186192 node_paths=PackedStringArray("objective_list")]
+script = ExtResource("4_hjl14")
+quest_name = &"Baller"
+objective_list = [NodePath("Objective")]
+metadata/_custom_type_script = "uid://e0gevm5jffqp"
+
+[node name="Objective" type="Node" parent="Quest" unique_id=292130152]
+script = ExtResource("5_g8cmt")
+metadata/_custom_type_script = "uid://83vsg2v7k1lv"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=893883551]
+libraries/ = SubResource("AnimationLibrary_8btm6")
+
+[node name="AutomaticCloseTimer" type="Timer" parent="." unique_id=1597967572]
+wait_time = 7.0
+one_shot = true

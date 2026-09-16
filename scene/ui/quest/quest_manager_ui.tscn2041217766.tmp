@@ -1,0 +1,123 @@
+[gd_scene format=3 uid="uid://bfv5u2djo1xgr"]
+
+[ext_resource type="Texture2D" uid="uid://dy7f6uprc1ulm" path="res://textures/ui/tilemap_packed.png" id="1_1ahfr"]
+[ext_resource type="PackedScene" uid="uid://3gnuwa67k7q0" path="res://scene/ui/quest/quest_ui_label.tscn" id="1_6ydvn"]
+[ext_resource type="Script" uid="uid://cy7nfsa0ve1ub" path="res://scene/ui/quest/quest_manager_ui.gd" id="1_w2530"]
+[ext_resource type="Script" uid="uid://e0gevm5jffqp" path="res://scripts/quests/quest.gd" id="4_hjl14"]
+[ext_resource type="Script" uid="uid://83vsg2v7k1lv" path="res://scripts/quests/objective.gd" id="5_g8cmt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bhunq"]
+
+[sub_resource type="Animation" id="Animation_g8cmt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/PanelContainer:offset_transform_position_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_pkw75"]
+resource_name = "new_quest"
+length = 1.6333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/PanelContainer:offset_transform_position_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.6333333),
+"transitions": PackedFloat32Array(0.3511993, 1, 1),
+"update": 0,
+"values": [Vector2(1, 0), Vector2(-0.02, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8btm6"]
+_data = {
+&"RESET": SubResource("Animation_g8cmt"),
+&"new_quest": SubResource("Animation_pkw75")
+}
+
+[node name="QuestManagerUI" type="CanvasLayer" unique_id=450376624]
+script = ExtResource("1_w2530")
+
+[node name="Control" type="Control" parent="." unique_id=550232237]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Control" unique_id=251764226]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -347.0
+offset_top = -191.25
+offset_bottom = 191.25
+grow_horizontal = 0
+grow_vertical = 2
+offset_transform_enabled = true
+theme_override_styles/panel = SubResource("StyleBoxEmpty_bhunq")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Control/PanelContainer" unique_id=1272636771]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("1_1ahfr")
+region_rect = Rect2(0, 64, 32, 32)
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/PanelContainer" unique_id=738420432]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="QuestList" type="VBoxContainer" parent="Control/PanelContainer/MarginContainer" unique_id=1235073255]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="QuestUILabel" parent="Control/PanelContainer/MarginContainer/QuestList" unique_id=832890566 instance=ExtResource("1_6ydvn")]
+layout_mode = 2
+text = "Quest 1"
+autowrap_mode = 1
+
+[node name="Quest" type="Node" parent="." unique_id=1897186192 node_paths=PackedStringArray("objective_list")]
+script = ExtResource("4_hjl14")
+quest_name = &"Baller"
+objective_list = [NodePath("Objective")]
+metadata/_custom_type_script = "uid://e0gevm5jffqp"
+
+[node name="Objective" type="Node" parent="Quest" unique_id=292130152]
+script = ExtResource("5_g8cmt")
+metadata/_custom_type_script = "uid://83vsg2v7k1lv"
+
+[node name="Quest2" type="Node" parent="." unique_id=541781315 node_paths=PackedStringArray("objective_list")]
+script = ExtResource("4_hjl14")
+quest_name = &"Balleress"
+objective_list = [NodePath("Objective")]
+metadata/_custom_type_script = "uid://e0gevm5jffqp"
+
+[node name="Objective" type="Node" parent="Quest2" unique_id=475638237]
+script = ExtResource("5_g8cmt")
+metadata/_custom_type_script = "uid://83vsg2v7k1lv"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=893883551]
+libraries/ = SubResource("AnimationLibrary_8btm6")

@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://3gnuwa67k7q0"]
+
+[ext_resource type="FontFile" uid="uid://fs156bco8mge" path="res://fonts/alagard.ttf" id="1_m37cq"]
+[ext_resource type="Script" uid="uid://b0t2kdkjy7sgp" path="res://scripts/ui/quest/quest_ui_label.gd" id="2_ect0p"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4dwg1"]
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+
+[node name="QuestUILabel" type="RichTextLabel" unique_id=832890566]
+oversampling_with_scale = 2
+z_index = 2
+custom_minimum_size = Vector2(-10, 0)
+clip_contents = false
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/normal_font = ExtResource("1_m37cq")
+theme_override_font_sizes/normal_font_size = 40
+theme_override_font_sizes/bold_font_size = 40
+theme_override_font_sizes/bold_italics_font_size = 40
+theme_override_font_sizes/italics_font_size = 40
+theme_override_font_sizes/mono_font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxEmpty_4dwg1")
+fit_content = true
+autowrap_mode = 0
+vertical_alignment = 1
+script = ExtResource("2_ect0p")

@@ -4,17 +4,7 @@
 [ext_resource type="Script" uid="uid://cdw0rl5d1wab5" path="res://scripts/ui/dialogue/dialogue_ui.gd" id="1_gnuae"]
 [ext_resource type="Texture2D" uid="uid://cvnydgbetw6jk" path="res://textures/ui/dialogue_tip.png" id="2_gnuae"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mb61u"]
-content_margin_left = 0.0
-content_margin_top = 0.0
-content_margin_right = 0.0
-content_margin_bottom = 0.0
-bg_color = Color(0.6, 0.6, 0.6, 0)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_riqys"]
 
 [node name="DialogueUI" type="Control" unique_id=224817476]
 visible = false
@@ -42,7 +32,7 @@ offset_top = -57.0
 offset_right = 25.0
 offset_bottom = -5.0
 grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_mb61u")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_riqys")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="BubblePosition/PanelContainer" unique_id=1246839410]
 texture_filter = 1
