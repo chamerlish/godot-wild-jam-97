@@ -27,12 +27,14 @@ func _on_end_dialogue(target: NPC):
 	if target != self:
 		return
 	
+	is_in_dialogue = false
+	
 	if not QuestManager.is_in_list(npc_quest):
 		QuestManager.add_quest(npc_quest)
 		return
 	
 	QuestManager.update_quest(npc_quest)
-	is_in_dialogue = false
+	
 
 func _on_finished_quest(associated_quest: Quest) -> void:
 	if npc_quest != associated_quest:
@@ -61,7 +63,6 @@ func generate_random_direction() -> Vector2:
 
 
 func interact(target: Node2D, held_item: Node2D) -> void:
-	print("je")
 	if target != self or is_happy:
 		return
 	
