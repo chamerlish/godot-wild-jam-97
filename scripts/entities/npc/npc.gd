@@ -38,11 +38,11 @@ func _on_finished_quest(associated_quest: Quest) -> void:
 	if npc_quest != associated_quest:
 		return
 	is_happy = true
-	print(is_happy)
+	ParticleManager.start_particle(global_position)
 
 
 func _physics_process(_delta: float) -> void:
-	if is_in_dialogue or not is_happy:
+	if is_in_dialogue or is_happy:
 		return
 	
 	velocity = target_direction.normalized() * SPEED
@@ -61,8 +61,8 @@ func generate_random_direction() -> Vector2:
 
 
 func interact(target: Node2D, held_item: Node2D) -> void:
+	print("je")
 	if target != self or is_happy:
-		
 		return
 	
 	var result: Array = await npc_quest.check_result(held_item)

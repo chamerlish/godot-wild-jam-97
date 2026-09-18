@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 DialogueManager="*uid://ocsgxc73mivq"
 NPCUtils="*uid://cy647om7roulc"
 QuestManager="*uid://cyib8m3cmvnim"
+ParticleManager="*uid://jca5ul3ayl4f"
 
 [display]
 
