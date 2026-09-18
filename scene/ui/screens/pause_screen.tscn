@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://ccsncsey6h4s7"]
+
+[ext_resource type="Script" uid="uid://dqp4k01vql7mj" path="res://scripts/ui/screens/pause_screen.gd" id="1_yf6wp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mfanx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ytu2q"]
+bg_color = Color(0.6, 0.6, 0.6, 0.3764706)
+border_blend = true
+
+[node name="PauseScreen" type="CanvasLayer" unique_id=933908491]
+process_mode = 3
+visible = false
+script = ExtResource("1_yf6wp")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=700447967]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.28, 0.12348, 0.061600007, 0.34509805)
+
+[node name="Label" type="Label" parent="." unique_id=311866628]
+offset_left = 300.0
+offset_top = 366.0
+offset_right = 852.0
+offset_bottom = 382.0
+
+[node name="MarginContainer3" type="MarginContainer" parent="." unique_id=52466578]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 300
+theme_override_constants/margin_top = 200
+theme_override_constants/margin_right = 300
+theme_override_constants/margin_bottom = 100
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer3" unique_id=479531249]
+layout_mode = 2
+theme_override_constants/margin_top = 200
+theme_override_constants/margin_bottom = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer3/MarginContainer" unique_id=1559848954]
+texture_filter = 1
+layout_mode = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="ResumeButton" type="Button" parent="MarginContainer3/MarginContainer/VBoxContainer" unique_id=740012574]
+layout_mode = 2
+theme_override_font_sizes/font_size = 57
+theme_override_styles/normal = SubResource("StyleBoxEmpty_mfanx")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ytu2q")
+text = "Resume"
+
+[node name="RestartButton" type="Button" parent="MarginContainer3/MarginContainer/VBoxContainer" unique_id=1382187862]
+layout_mode = 2
+theme_override_font_sizes/font_size = 57
+theme_override_styles/normal = SubResource("StyleBoxEmpty_mfanx")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ytu2q")
+text = "Start Over"
+
+[node name="ExitButton" type="Button" parent="MarginContainer3/MarginContainer/VBoxContainer" unique_id=1134620924]
+layout_mode = 2
+theme_override_font_sizes/font_size = 57
+theme_override_styles/normal = SubResource("StyleBoxEmpty_mfanx")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ytu2q")
+text = "Exit"
+
+[connection signal="pressed" from="MarginContainer3/MarginContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="MarginContainer3/MarginContainer/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="MarginContainer3/MarginContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
