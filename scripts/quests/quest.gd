@@ -1,37 +1,53 @@
+
 class_name Quest extends Node
 
 @export var quest_name: StringName
+@export var objective_list: Array[Objective]
 
 var completed: bool = false
 
-signal complete_quest
+var current_step: int = 0:
+	set(value):
+		current_step = value
+
+@onready var current_objective: Objective:
+	get:
+		return objective_list.get(current_step)
 
 
-@export var objective_list: Array[Objective]
-var current_step: int = 0
-@onready var current_objective: Objective = objective_list[current_step]
+func _ready() -> void:
+	QuestManager.objective_completed.connect(_on_finished_objective)
 
 
-func check_item(held_item: Node2D) -> Array:
-	var is_correct_item: bool
-	var return_message: Array[String]
+func _on_finished_objective(associated_objective: Objective) -> void:
+	if associated_objective != current_objective:
+		return
 	
-	is_correct_item = current_objective.object_needed == held_item
+	finish_step()
+
+
+func check_result(held_item: Node2D) -> Array:
+	var result: Array = await current_objective.check_result(held_item)
 	
-	if is_correct_item:
-		return_message = current_objective.success_message
-		held_item.queue_free()
-	else:
-		return_message = current_objective.normal_message
-		
+	if result[0]:
+		QuestManager.objective_completed.emit(current_objective)
 	
-	return [is_correct_item, return_message]
+	return result
+
 
 func finish_step() -> void:
-	current_step += 1
-	if current_step >= objective_list.size() - 1:
-		completed = true
-		complete_quest.emit()
-	
-	current_objective = objective_list[current_step]
 	current_objective.complete_callback()
+	current_step += 1
+	
+	if current_step >= objective_list.size():
+		completed = true
+		QuestManager.finish_quest(self)
+
+
+func finish_specific_step(step: int) -> void:
+	if step == current_step:
+		finish_step()
+
+
+func get_objective(step: int) -> Objective:
+	return objective_list.get(step)

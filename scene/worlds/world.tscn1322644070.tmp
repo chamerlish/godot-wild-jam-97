@@ -5,11 +5,12 @@
 [ext_resource type="Script" uid="uid://c4a5vaecbit8k" path="res://scripts/entities/player/player_camera.gd" id="3_3e82u"]
 [ext_resource type="PackedScene" uid="uid://coum6axb5iqnt" path="res://scene/entities/npc/npc.tscn" id="4_tmwor"]
 [ext_resource type="Script" uid="uid://e0gevm5jffqp" path="res://scripts/quests/quest.gd" id="5_slyxh"]
-[ext_resource type="Script" uid="uid://dmji61lw766wn" path="res://scripts/quests/item_based_objective.gd" id="6_gatqw"]
+[ext_resource type="Script" uid="uid://83vsg2v7k1lv" path="res://scripts/quests/objective.gd" id="6_qn1ml"]
 [ext_resource type="PackedScene" uid="uid://bxsancurlxe6o" path="res://scene/misc/basic_object.tscn" id="7_4utwg"]
 [ext_resource type="PackedScene" uid="uid://ojs0f644gfu6" path="res://scene/ui/dialogue/dialogue_ui.tscn" id="8_6n167"]
 [ext_resource type="PackedScene" uid="uid://bfv5u2djo1xgr" path="res://scene/ui/quest/quest_manager_ui.tscn" id="9_itgq7"]
 [ext_resource type="PackedScene" uid="uid://cklp08avi6asy" path="res://scene/misc/interactable_object.tscn" id="10_4a81e"]
+[ext_resource type="Script" uid="uid://ds2apfyjsw75j" path="res://scripts/events/event.gd" id="11_gatqw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p0h4x"]
 texture = ExtResource("1_w12ll")
@@ -171,18 +172,18 @@ npc_quest = NodePath("Quest")
 [node name="Quest" type="Node" parent="Npc" unique_id=2128381785 node_paths=PackedStringArray("objective_list")]
 script = ExtResource("5_slyxh")
 quest_name = &"The Key Of Happiness"
-objective_list = [NodePath("ItemBasedObjective")]
+objective_list = [NodePath("Objective"), NodePath("../../Quest/Objective2")]
 metadata/_custom_type_script = "uid://e0gevm5jffqp"
 
-[node name="ItemBasedObjective" type="Node" parent="Npc/Quest" unique_id=1386386210 node_paths=PackedStringArray("object_needed")]
-script = ExtResource("6_gatqw")
-object_needed = NodePath("../../../BasicObject")
+[node name="Objective" type="Node" parent="Npc/Quest" unique_id=94256866]
+script = ExtResource("6_qn1ml")
 description = "Find a key and bring it back to Key Licker Joe"
 normal_message = Array[String](["i-i always wanted to \\n lick a key in my life", "but sadly i was never \\n around them"])
 success_message = Array[String](["slurp slurp...", "yummy it tastes \\n horrible nom nom nom"])
-metadata/_custom_type_script = "uid://dmji61lw766wn"
+metadata/_custom_type_script = "uid://83vsg2v7k1lv"
 
 [node name="BasicObject" parent="." unique_id=778565226 instance=ExtResource("7_4utwg")]
+visible = false
 position = Vector2(256, 0)
 
 [node name="DialogueUI" parent="." unique_id=206093376 instance=ExtResource("8_6n167")]
@@ -193,5 +194,29 @@ offset_bottom = -130.0
 
 [node name="QuestManagerUI" parent="." unique_id=450376624 instance=ExtResource("9_itgq7")]
 
-[node name="InteractableObject2" parent="." unique_id=1555045146 instance=ExtResource("10_4a81e")]
+[node name="InteractableObject2" parent="." unique_id=1555045146 node_paths=PackedStringArray("related_event") instance=ExtResource("10_4a81e")]
 position = Vector2(240, -96)
+related_event = NodePath("Event")
+
+[node name="Event" type="Node" parent="InteractableObject2" unique_id=456195205 node_paths=PackedStringArray("associated_quest")]
+script = ExtResource("11_gatqw")
+associated_quest = NodePath("../../Quest")
+specific_step = 1
+metadata/_custom_type_script = "uid://ds2apfyjsw75j"
+
+[node name="Quest" type="Node" parent="." unique_id=149101709 node_paths=PackedStringArray("objective_list")]
+script = ExtResource("5_slyxh")
+quest_name = &"Baller"
+objective_list = [NodePath("Objective"), NodePath("Objective2")]
+metadata/_custom_type_script = "uid://e0gevm5jffqp"
+
+[node name="Objective" type="Node" parent="Quest" unique_id=404204118]
+script = ExtResource("6_qn1ml")
+normal_message = Array[String](["ee"])
+success_message = Array[String](["zz"])
+metadata/_custom_type_script = "uid://83vsg2v7k1lv"
+
+[node name="Objective2" type="Node" parent="Quest" unique_id=1978222466]
+script = ExtResource("6_qn1ml")
+description = "Ball"
+metadata/_custom_type_script = "uid://83vsg2v7k1lv"

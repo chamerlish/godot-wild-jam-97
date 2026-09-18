@@ -21,14 +21,19 @@ var is_showing: bool = false:
 
 func _ready() -> void:
 	DialogueManager.start_dialogue.connect(start_dialogue)
-	NPCUtils.pickup.connect(func(_throwaway: Node2D): is_showing = false)
+	NPCUtils.pickup.connect(func(target: Node2D): 
+		if last_npc == target: 
+			is_showing = false
+	)
+
+var last_npc: NPC
 
 
 func start_dialogue(new_lines_to_read: Array[String], tip_position: Marker2D, target: NPC):
 	
 	if is_showing:
 		return
-	
+	last_npc = target
 	is_showing = true
 	current_line = 0
 	bubble_position.global_position = tip_position.global_position
@@ -77,7 +82,7 @@ func try_to_read_next_line(target: NPC) -> void:
 		is_showing = false
 		pass
 
-func _input(event: InputEvent) -> void:
+func _ienput(event: InputEvent) -> void:
 	if not is_showing:
 		return
 	if event.is_action_pressed("ui_accept"):

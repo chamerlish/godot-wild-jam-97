@@ -3,7 +3,7 @@ extends CanvasLayer
 var quest_ui_label: PackedScene = preload("res://scene/ui/quest/quest_ui_label.tscn")
 
 @onready var quest_list: VBoxContainer = $Control/SideBar/PanelContainer/MarginContainer/QuestList
-@onready var quest: Quest = $Quest
+
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 var is_oppened: bool = false

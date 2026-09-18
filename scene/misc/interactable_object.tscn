@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://cklp08avi6asy"]
+
+[ext_resource type="Texture2D" uid="uid://bqsklppml0k5u" path="res://textures/tiles/tilemap_packed.png" id="1_2rm8k"]
+[ext_resource type="Script" uid="uid://cky4ddw4am8io" path="res://scripts/misc/interactable_object.gd" id="1_x6ut7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x2m5p"]
+size = Vector2(16, 16)
+
+[node name="InteractableObject" type="StaticBody2D" unique_id=778565226 groups=["Interactable"]]
+script = ExtResource("1_x6ut7")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1617515062]
+texture_filter = 1
+texture = ExtResource("1_2rm8k")
+hframes = 12
+vframes = 11
+frame = 131
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=446881537]
+shape = SubResource("RectangleShape2D_x2m5p")
